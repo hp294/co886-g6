@@ -17,9 +17,12 @@ package view.toolbars;
 
 import managers.ActionManager;
 
+import java.awt.Font;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.UIManager;
 
 // import com.apple.eawt.Application;
 
@@ -33,12 +36,14 @@ public class MainMenu {
   private JMenuBar jMenuBar = new JMenuBar();
 
   /* Program menu items */
-  private JMenu jMenuFile = new JMenu();
-  private JMenuItem jMenuItemOpen = new JMenuItem();
+  private JMenu jMenuFile = new JMenu("File");
+  private JMenuItem jMenuItemOpen = new JMenuItem("Open");
   private JMenuItem jMenuItemCloseFile = new JMenuItem();
   private JMenuItem jMenuItemPrint = new JMenuItem();
-  private JMenuItem jMenuItemOptions = new JMenuItem();
-  private JMenuItem jMenuItemExit = new JMenuItem();
+  private JMenuItem jMenuItemOptions = new JMenuItem("Options");
+  private JMenuItem jMenuItemExit = new JMenuItem("Exit");
+  
+  //jMenuItemOptions.setTitle("Options");
 
   /* Edit menu items */
   private JMenu jMenuEdit = new JMenu();
@@ -81,9 +86,13 @@ public class MainMenu {
    */
   public void jbInit() throws Exception {
     ActionManager am = ActionManager.getInstance();
+    
+    Font f = new Font("sans-serif", Font.PLAIN, 20);
+    UIManager.put("JMenuFile.font", f);
 
     /* File Menu */
     jMenuFile.setText("Program");
+    jMenuFile.setName("Program");
     jMenuFile.setMnemonic('p');
     jMenuItemOpen.setAction(am.getOpenFileAction());
     // jMenuItemPrint.setText("Print");
@@ -167,6 +176,8 @@ public class MainMenu {
     // app.setAboutHandler(null);
     // app.setPreferencesHandler(null);
     // app.setQuitHandler(null);
+    
+    
   }
 
   /**
