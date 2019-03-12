@@ -28,6 +28,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import utils.Resources;
 import view.toolbars.MainMenu;
@@ -401,8 +402,8 @@ public class WindowManager {
       /* add splitpane and evaluation window to main frame */
       mainScreenFrame.getContentPane().add(jSplitTree, BorderLayout.CENTER);
       
-      mainScreenFrame.setMinimumSize(new Dimension(550,300));
-      mainScreenFrame.setSize(620,400);
+      mainScreenFrame.setMinimumSize(new Dimension(950,700));
+      mainScreenFrame.setSize(820,600);
       mainScreenFrame.pack();
       // java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
       // mainScreenFrame.setSize(java.lang.Math.min(screenSize.width,800)-20, 
@@ -624,6 +625,7 @@ public class WindowManager {
    */
   public void setLNF(String lnfString) {
     try {
+    	
       UIManager.setLookAndFeel(lnfString);
       SwingUtilities.updateComponentTreeUI(getMainScreenFrame());
       optionsWindow = new OptionsWindow();
@@ -632,6 +634,9 @@ public class WindowManager {
       wizardWindow = new WizardWindow();
       printwindow = new PrintWindow();
       searchWindow = new SearchDialog();
+      
+     
+      
     } catch (Exception ex) {
       log.severe("[OptionsWindow] Error setting lnf:" + lnfString);
     }
