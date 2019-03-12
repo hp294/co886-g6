@@ -98,12 +98,17 @@ public class ConsoleWindow {
     jspMain.setMinimumSize(new Dimension(0, 0));
     jspMain.setPreferredSize(new Dimension(100,150));
     jspMain.setAutoscrolls(true);
-    StyleConstants.setForeground(normalText, Color.BLACK);
+    StyleConstants.setForeground(normalText, Color.white);
     StyleConstants.setForeground(errorText,Color.RED);
     StyleConstants.setForeground(infoText,Color.BLUE);
-    StyleConstants.setForeground(inputText,Color.DARK_GRAY);
+    StyleConstants.setForeground(inputText,Color.white);
     StyleConstants.setForeground(promptText,new Color(0,150,0));
     StyleConstants.setBold(inputText,true);
+    jtaInterpreterOutput.setBackground(Color.black);
+    
+    
+    StyleConstants.setBackground(normalText, Color.black);
+    StyleConstants.setBackground(errorText, Color.black);
     jtaInterpreterOutput.setEditable(true);
     /*Adding action map to the jtaInterpreterOutput*/
     jtaInterpreterOutput.getInputMap(JComponent.WHEN_FOCUSED)
