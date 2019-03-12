@@ -99,7 +99,7 @@ public class ConsoleWindow {
     jspMain.setPreferredSize(new Dimension(100,150));
     jspMain.setAutoscrolls(true);
     StyleConstants.setForeground(normalText, Color.white);
-    StyleConstants.setForeground(errorText,Color.RED);
+    StyleConstants.setForeground(errorText,Color.green);
     StyleConstants.setForeground(infoText,Color.BLUE);
     StyleConstants.setForeground(inputText,Color.white);
     StyleConstants.setForeground(promptText,new Color(0,150,0));
