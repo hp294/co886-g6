@@ -144,7 +144,7 @@ public class ConsoleWindow {
     }
 
     jtaInterpreterOutput.setFont(displayFont);
-    jtaInterpreterOutput.setCaretColor(Color.white);
+    jtaInterpreterOutput.setCaretColor(Color.RED);
     jtaInterpreterOutput.setCaret(new CustomCaret());
     
     /* This document filter ensures that the fixed content of the console, 
@@ -202,7 +202,7 @@ public class ConsoleWindow {
     }
     
     jtaInterpreterOutput.addCaretListener(new ConsoleCaretListener());
-    jtaInterpreterOutput.setCaretColor(Color.white);
+    jtaInterpreterOutput.setCaretColor(Color.RED);
     
     jtaInterpreterOutput.addKeyListener(new KeyAdapter(){
 		public void keyTyped(KeyEvent e) { 
