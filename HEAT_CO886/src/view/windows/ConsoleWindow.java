@@ -344,10 +344,10 @@ public class ConsoleWindow {
                               errorCount+=1;
                           } else if (!im.checkForErrorContinuation(line)) {
                               error = false;
-                              playSound("icons\\ahem_x.wav");
+                              playSound("audio\\ahem_x.wav");
                           }
                           if (error) {
-                        	  playSound("icons\\failure.wav");
+                        	  playSound("audio\\failure.wav");
                         	  fixed(false);
 				  jtaIODoc.remove(currentLineStart,jtaIODoc.getLength()-currentLineStart);
                                   if (errorCount==1) {
@@ -639,7 +639,7 @@ public class ConsoleWindow {
 	        clip.open(AudioSystem.getAudioInputStream(playSound));
 	        
 	        clip.start(); 
-	        Thread.sleep(clip.getMicrosecondLength()/1000);
+	        Thread.sleep(clip.getMicrosecondLength()/10000);
 	      } catch (Exception e) {
 	        System.err.println(e.getMessage());
 	      }
