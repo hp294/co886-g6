@@ -690,7 +690,7 @@ public class ConsoleWindow {
 
 
 	    g.setColor(Color.WHITE);
-	    this.setBlinkRate(500);
+	    this.setBlinkRate(400);
 	
 
 	    
@@ -703,23 +703,9 @@ public class ConsoleWindow {
 	      return;
 	    }
 
-	    if (dotChar == '\t')
-	      try {
-	        Rectangle nextr = comp.modelToView(dot + 1);
-	        if ((r.y == nextr.y) && (r.x < nextr.x)) {
-	          width = nextr.x - r.x;
-	          if (isVisible())
-	            g.fillRect(r.x, r.y, 30, 30);
-	          return;
-	        } else
-	          dotChar = ' ';
-	      } catch (BadLocationException e) {
-	        dotChar = ' ';
-	      }
-
 	    width = g.getFontMetrics().charWidth(dotChar);
 	    if (isVisible())
-	      g.fillRect(r.x, r.y, 30, 30);
+	      g.fillRect(r.x, r.y, r.height, r.height);
 	  }
 
  }
