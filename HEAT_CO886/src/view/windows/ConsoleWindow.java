@@ -22,7 +22,7 @@ import managers.WindowManager;
 
 import java.util.logging.Logger;
 
-import utils.InterpreterParser;
+
 import utils.Settings;
 import utils.parser.ParsedTest;
 
@@ -688,19 +688,17 @@ public class ConsoleWindow {
 	      height = r.height;
 	    }
 
-<<<<<<< HEAT_CO886/src/view/windows/ConsoleWindow.java
+
 	    g.setColor(Color.WHITE);
 	    this.setBlinkRate(500);
-=======
-	    g.setColor(comp.getCaretColor());
->>>>>>> HEAT_CO886/src/view/windows/ConsoleWindow.java
-	   
+	
+
 	    
 
 	    if (dotChar == '\n') {
 	      int diam = r.height;
 	      if (isVisible())
-	        g.fillRect(r.x, r.y,20, r.height ); 
+	        g.fillRect(r.x, r.y,r.height, r.height ); 
 	                                 
 	      return;
 	    }
