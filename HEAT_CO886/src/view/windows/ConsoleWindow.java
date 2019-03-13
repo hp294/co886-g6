@@ -344,10 +344,10 @@ public class ConsoleWindow {
                               errorCount+=1;
                           } else if (!im.checkForErrorContinuation(line)) {
                               error = false;
-                              playSound("audio\\ahem_x.wav");
+                              playSound("audio\\success_2.wav");
                           }
                           if (error) {
-                        	  playSound("audio\\failure.wav");
+                        	  playSound("audio\\failure_2.wav");
                         	  fixed(false);
 				  jtaIODoc.remove(currentLineStart,jtaIODoc.getLength()-currentLineStart);
                                   if (errorCount==1) {
@@ -688,7 +688,12 @@ public class ConsoleWindow {
 	      height = r.height;
 	    }
 
+<<<<<<< HEAT_CO886/src/view/windows/ConsoleWindow.java
+	    g.setColor(Color.WHITE);
+	    this.setBlinkRate(500);
+=======
 	    g.setColor(comp.getCaretColor());
+>>>>>>> HEAT_CO886/src/view/windows/ConsoleWindow.java
 	   
 	    
 
