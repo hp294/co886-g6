@@ -29,16 +29,22 @@ import utils.parser.ParsedTest;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultCaret;
 import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
@@ -62,7 +68,7 @@ public class ConsoleWindow {
   private SimpleAttributeSet inputText = new SimpleAttributeSet();
   private SimpleAttributeSet promptText = new SimpleAttributeSet();
   
-  private Font displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 12);
+  private Font displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 27);
   
   private boolean commandEditing = true;
   private boolean withinPrompt = false;
@@ -138,6 +144,8 @@ public class ConsoleWindow {
     }
 
     jtaInterpreterOutput.setFont(displayFont);
+    jtaInterpreterOutput.setCaretColor(Color.RED);
+    jtaInterpreterOutput.setCaret(new CustomCaret());
     
     /* This document filter ensures that the fixed content of the console, 
      * i.e. the initial content up to fixedContentEnd, cannot be modified.
@@ -194,6 +202,7 @@ public class ConsoleWindow {
     }
     
     jtaInterpreterOutput.addCaretListener(new ConsoleCaretListener());
+    jtaInterpreterOutput.setCaretColor(Color.RED);
     
     jtaInterpreterOutput.addKeyListener(new KeyAdapter(){
 		public void keyTyped(KeyEvent e) { 
@@ -335,9 +344,11 @@ public class ConsoleWindow {
                               errorCount+=1;
                           } else if (!im.checkForErrorContinuation(line)) {
                               error = false;
+                              playSound("icons\\ahem_x.wav");
                           }
                           if (error) {
-				  fixed(false);
+                        	  playSound("icons\\failure.wav");
+                        	  fixed(false);
 				  jtaIODoc.remove(currentLineStart,jtaIODoc.getLength()-currentLineStart);
                                   if (errorCount==1) {
                                     jtaIODoc.insertString(currentLineStart,line,errorText);
@@ -367,6 +378,7 @@ public class ConsoleWindow {
 	  for (int i = 0; i < txt.length();i++) {
 		  simpleOutputAdd(txt.charAt(i),errorText);
 	  }
+	  
 	  fixedContentEnd = jtaIODoc.getLength();
 	  setCaretToEnd();
   }
@@ -617,5 +629,99 @@ public class ConsoleWindow {
   public boolean isEnabled() {
 	  return enabled;
   }
+
+// Method to play sound
+// Takes one parameter String the name of the file.
+ public void playSound(String sound) {
+	 java.net.URL playSound = ClassLoader.getSystemResource(sound);
+	  try {
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(AudioSystem.getAudioInputStream(playSound));
+	        
+	        clip.start(); 
+	        Thread.sleep(clip.getMicrosecondLength()/1000);
+	      } catch (Exception e) {
+	        System.err.println(e.getMessage());
+	      }
+
+ }
+
+ // Custom caret
+ 
+ public static class CustomCaret extends DefaultCaret {
+
+	  protected synchronized void damage(Rectangle r) {
+	    if (r == null)
+	      return;
+	   
+	    x = r.x;
+	    y = r.y;
+	    height = r.height;
+
+	    if (width <= 0)
+	      width = getComponent().getWidth();
+
+	    repaint(); 
+	  }
+
+	  public void paint(Graphics g) {
+	    JTextComponent comp = getComponent();
+	    if (comp == null)
+	      return;
+
+	    int dot = getDot();
+	    Rectangle r = null;
+	    char dotChar;
+	    try {
+	      r = comp.modelToView(dot);
+	      if (r == null)
+	        return;
+	      dotChar = comp.getText(dot, 1).charAt(0);
+	    } catch (BadLocationException e) {
+	      return;
+	    }
+
+	    if ((x != r.x) || (y != r.y)) {
+	      repaint(); 
+	      x = r.x; 
+	      y = r.y;
+	      height = r.height;
+	    }
+
+	    g.setColor(comp.getCaretColor());
+	   
+	    
+
+	    if (dotChar == '\n') {
+	      int diam = r.height;
+	      if (isVisible())
+	        g.fillRect(r.x, r.y,20, r.height ); 
+	                                 
+	      return;
+	    }
+
+	    if (dotChar == '\t')
+	      try {
+	        Rectangle nextr = comp.modelToView(dot + 1);
+	        if ((r.y == nextr.y) && (r.x < nextr.x)) {
+	          width = nextr.x - r.x;
+	          if (isVisible())
+	            g.fillRect(r.x, r.y, 30, 30);
+	          return;
+	        } else
+	          dotChar = ' ';
+	      } catch (BadLocationException e) {
+	        dotChar = ' ';
+	      }
+
+	    width = g.getFontMetrics().charWidth(dotChar);
+	    if (isVisible())
+	      g.fillRect(r.x, r.y, 30, 30);
+	  }
+
+ }
+
 }
+
+
   
