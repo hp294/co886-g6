@@ -76,7 +76,7 @@ public static void main(String[] args) {
         wm.getEditorWindow().setEditorContent("Use menu to open an existing or create a new program in the editor.");
         wm.setCloseEnabled(false);
         UndoManager.getInstance().reset();
-        //wm.onlyConsole();
+        wm.onlyConsole();
         wm.getConsoleWindow().getFocus();
     }
     wm.setVisible();

@@ -90,17 +90,17 @@ public class SyntaxUtilities {
   public static SyntaxStyle[] getDefaultSyntaxStyles() {
     SyntaxStyle[] styles = new SyntaxStyle[Token.ID_COUNT];
     /* Comments */
-    styles[Token.COMMENT1] = new SyntaxStyle(Color.green, false, false); //(new Color(0, 153, 0), false, false);
-    styles[Token.COMMENT2] = new SyntaxStyle(Color.green, false, false); //(new Color(0, 153, 0), false, false);
+    styles[Token.COMMENT1] = new SyntaxStyle(new Color(0, 153, 0), false, false);
+    styles[Token.COMMENT2] = new SyntaxStyle(new Color(0, 153, 0), false, false);
     /* Keywords */
-    styles[Token.KEYWORD1] = new SyntaxStyle(Color.white, false, true);
-    styles[Token.KEYWORD2] = new SyntaxStyle(Color.yellow, false, false);
-    styles[Token.KEYWORD3] = new SyntaxStyle(Color.cyan, false, true);
-    styles[Token.LITERAL1] = new SyntaxStyle(new Color(0xFF9900), false, false);
-    styles[Token.LITERAL2] = new SyntaxStyle(Color.pink, false, true);
+    styles[Token.KEYWORD1] = new SyntaxStyle(Color.black, false, true);
+    styles[Token.KEYWORD2] = new SyntaxStyle(Color.magenta, false, false);
+    styles[Token.KEYWORD3] = new SyntaxStyle(Color.blue, false, true);
+    styles[Token.LITERAL1] = new SyntaxStyle(new Color(0x650099), false, false);
+    styles[Token.LITERAL2] = new SyntaxStyle(Color.PINK, false, true);
     styles[Token.LABEL] = new SyntaxStyle(new Color(0x990033), false, true);
-    styles[Token.OPERATOR] = new SyntaxStyle(Color.white, false, false);
-    styles[Token.INVALID] = new SyntaxStyle(Color.white, false, false);
+    styles[Token.OPERATOR] = new SyntaxStyle(Color.black, false, false);
+    styles[Token.INVALID] = new SyntaxStyle(Color.black, false, false);
 
     return styles;
   }
@@ -128,8 +128,7 @@ public class SyntaxUtilities {
   public static int paintSyntaxLine(Segment line, Token tokens,
       SyntaxStyle[] styles, TabExpander expander, Graphics gfx, int x, int y) {
     Font defaultFont = gfx.getFont();
-    gfx.setColor(Color.white);
-    Color defaultColor = gfx.getColor(); 
+    Color defaultColor = gfx.getColor();
 
     int offset = 0;
     for (;;) {
