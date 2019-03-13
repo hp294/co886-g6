@@ -651,9 +651,7 @@ public class ConsoleWindow {
  public static class CustomCaret extends DefaultCaret {
 
 	  protected synchronized void damage(Rectangle r) {
-	    if (r == null)
-	      return;
-	   
+	 
 	    x = r.x;
 	    y = r.y;
 	    height = r.height;
@@ -688,12 +686,9 @@ public class ConsoleWindow {
 	      height = r.height;
 	    }
 
-
 	    g.setColor(Color.WHITE);
 	    this.setBlinkRate(400);
-	
 
-	    
 
 	    if (dotChar == '\n') {
 	      int diam = r.height;
