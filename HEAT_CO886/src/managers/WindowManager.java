@@ -653,8 +653,6 @@ public class WindowManager {
    * @param fileName the filename to display in titlebar
    */
   public void setTitleFileName(String fileName) {
-
-
 	  getMainScreenFrame().setFont(new Font("Arial", Font.PLAIN, 40));
 	 
 
