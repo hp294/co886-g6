@@ -28,7 +28,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import java.awt.Dimension;
-import java.awt.Font;
 
 import utils.Resources;
 import view.toolbars.MainMenu;
@@ -42,6 +41,8 @@ import view.windows.PrintWindow;
 import view.windows.SearchDialog;
 import view.windows.WizardWindow;
 import view.windows.TreeWindow;
+
+import java.awt.Font;
 
 
 
@@ -337,8 +338,7 @@ public class WindowManager {
     if (mainScreenFrame!=null)
 	  mainScreenFrame.setVisible(false);
     mainScreenFrame = new JFrame();
-    mainScreenFrame.setTitle("HEAT - Haskell Educational Advancement Tool") ;
-    
+    mainScreenFrame.setTitle("HEAT - Haskell Educational Advancement Tool");
     Image icon = Resources.getIcon("logo").getImage();
     mainScreenFrame.setIconImage(icon);
     
@@ -357,7 +357,6 @@ public class WindowManager {
 
     mainMenu = new MainMenu();
     toolbar = new Toolbar();
-    
 
     /* setup main container components */
     // JPanel mainScreenPanel = new JPanel();
@@ -370,12 +369,10 @@ public class WindowManager {
     displayWindow.getJTextPane().setMinimumSize(new Dimension(200,0));
     jSplitMain.setResizeWeight(0.6);
 	
-    jSplitMain.setOneTouchExpandable(false);
-    
-    jSplitTree.setOneTouchExpandable(false); 
-  
-    
-    
+    jSplitMain.setOneTouchExpandable(true);
+    jSplitTree.setOneTouchExpandable(true);
+   
+
     try {
       /* handle closing screen */
       mainScreenFrame.addWindowListener(new WindowAdapter() {
@@ -399,7 +396,6 @@ public class WindowManager {
       // jSplitTree.add(jSplitMain, JSplitPane.RIGHT);
      
       /* add menu and toolbar */
- 
       mainScreenFrame.setJMenuBar(mainMenu.getToolBar());
       mainScreenFrame.getContentPane().add(toolbar.getToolBar(),
         BorderLayout.NORTH);
@@ -407,8 +403,8 @@ public class WindowManager {
       /* add splitpane and evaluation window to main frame */
       mainScreenFrame.getContentPane().add(jSplitTree, BorderLayout.CENTER);
       
-      mainScreenFrame.setMinimumSize(new Dimension(950,700));
-      mainScreenFrame.setSize(820,600);
+      mainScreenFrame.setMinimumSize(new Dimension(550,300));
+      mainScreenFrame.setSize(620,400);
       mainScreenFrame.pack();
       // java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
       // mainScreenFrame.setSize(java.lang.Math.min(screenSize.width,800)-20, 
@@ -595,7 +591,7 @@ public class WindowManager {
    * @param ptSize the desired font size
    */
   public void setDefaultFontSize(int ptSize) {
-    getConsoleWindow().setFontSize(ptSize);
+    getConsoleWindow().setFontSize(10);
   }
 
   /**
@@ -630,7 +626,6 @@ public class WindowManager {
    */
   public void setLNF(String lnfString) {
     try {
-    	
       UIManager.setLookAndFeel(lnfString);
       SwingUtilities.updateComponentTreeUI(getMainScreenFrame());
       optionsWindow = new OptionsWindow();
@@ -639,9 +634,6 @@ public class WindowManager {
       wizardWindow = new WizardWindow();
       printwindow = new PrintWindow();
       searchWindow = new SearchDialog();
-      
-     
-      
     } catch (Exception ex) {
       log.severe("[OptionsWindow] Error setting lnf:" + lnfString);
     }
@@ -653,10 +645,13 @@ public class WindowManager {
    * @param fileName the filename to display in titlebar
    */
   public void setTitleFileName(String fileName) {
+	  getMainScreenFrame().setFont(new Font("Courier New", Font.PLAIN, 40));
+	 
     if(fileName == null || fileName.trim().equals(""))
       getMainScreenFrame().setTitle("HEAT - Haskell Educational Advancement Tool");
     else
       getMainScreenFrame().setTitle("HEAT - "+fileName);
+    
   }
   
   

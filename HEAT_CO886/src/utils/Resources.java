@@ -15,7 +15,6 @@
 
 package utils;
 
-import java.awt.Image;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
@@ -31,26 +30,23 @@ public class Resources {
    * @return the created ImageIcon
    */
   public static ImageIcon getIcon(String iconName) {
-	
     if (iconName.equals(""))
       return null;
     String imgLocation = "icons/" + iconName + ".png";
     java.net.URL imageURL = Resources.class.getClassLoader().getResource(imgLocation);
-    ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageURL).getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
-	if (imageURL == null) {
+    if (imageURL == null) {
       log.warning("[Resources] - Resource not found:" + imgLocation);
       return null;
     } else
-    	
-      return imageIcon;// new ImageIcon(imageURL);
+      return new ImageIcon(imageURL);
   }
 
   
   /**
    * Return the location of the help files location
    * @param filebaseName The name of the file (minus extension)
-   * @return The path to the file 
-   * */
+   * @return The path to the file
+   */
   public static String getHelpFilePath(String filebaseName) {
     if (filebaseName.equals(""))
       return null;
