@@ -99,8 +99,8 @@ public class SettingsManager {
       "C:\\Program Files\\Hugs98\\hugs.exe");
     newSettings.setProperty(Settings.LIBRARY_PATH,
       System.getProperty("user.home"));
-    newSettings.setProperty(Settings.OUTPUT_FONT_SIZE, "40");
-    newSettings.setProperty(Settings.CODE_FONT_SIZE, "40");
+    newSettings.setProperty(Settings.OUTPUT_FONT_SIZE, "12");
+    newSettings.setProperty(Settings.CODE_FONT_SIZE, "14");
     newSettings.setProperty(Settings.INTERPRETER_OPTS,"");
     newSettings.setProperty(Settings.TEST_FUNCTION,"");
     newSettings.setProperty(Settings.TEST_POSITIVE,"True");

@@ -28,10 +28,11 @@ import utils.jsyntax.JEditTextAreaWithMouseWheel;
 import utils.jsyntax.tokenmarker.HaskellTokenMarker;
 import utils.jsyntax.tokenmarker.LHSHaskellTokenMarker;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
 import javax.swing.KeyStroke;
-
+import javax.swing.text.StyleConstants;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -42,7 +43,7 @@ public class EditorWindow {
   private static Logger log = Logger.getLogger("heat");
   private static JEditTextArea jtaCodeView;
   private WindowManager wm = WindowManager.getInstance();
-
+  
   /* If the document has been modified */
   private boolean hasBeenModified = false;
 
@@ -65,6 +66,9 @@ public class EditorWindow {
   public EditorWindow() {
     try {
       jbInit();
+      
+
+      
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -77,7 +81,9 @@ public class EditorWindow {
           on = false;
       }
       enabled = on;
+      
       jtaCodeView.setEditable(on);
+      
   }
   
   public boolean isEnabled() {
@@ -199,6 +205,10 @@ public class EditorWindow {
     SettingsManager sm = SettingsManager.getInstance();
     FileManager fm = FileManager.getInstance();
     jtaCodeView = new JEditTextAreaWithMouseWheel();
+    jtaCodeView.getPainter().setBackground(Color.black);
+    jtaCodeView.getPainter().setLineHighlightColor(Color.gray);
+    
+    
 
     String fontSizeStr = sm.getSetting(Settings.CODE_FONT_SIZE);
 
@@ -248,6 +258,8 @@ public class EditorWindow {
     
     jtaCodeView.setHorizontalScrollBarEnabled(enabled);
     setEnabled(false);
+    
+   
 }
  
 
@@ -271,6 +283,8 @@ public class EditorWindow {
   public void setEditorContent(String toDisplay) {
     jtaCodeView.setText(toDisplay);
     jtaCodeView.setCaretPosition(0);
+    
+    
   }
 
   /**
