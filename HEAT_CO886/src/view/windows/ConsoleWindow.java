@@ -688,7 +688,7 @@ public class ConsoleWindow {
 	      height = r.height;
 	    }
 
-	    g.setColor(Color.RED);
+	    g.setColor(Color.WHITE);
 	    this.setBlinkRate(500);
 	   
 	    
