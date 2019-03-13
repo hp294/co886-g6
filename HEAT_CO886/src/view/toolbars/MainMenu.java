@@ -17,12 +17,12 @@ package view.toolbars;
 
 import managers.ActionManager;
 
-import java.awt.Font;
+
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.UIManager;
+
 
 // import com.apple.eawt.Application;
 
@@ -87,13 +87,11 @@ public class MainMenu {
   public void jbInit() throws Exception {
     ActionManager am = ActionManager.getInstance();
     
-    Font f = new Font("sans-serif", Font.PLAIN, 20);
-    UIManager.put("JMenuFile.font", f);
 
     /* File Menu */
-    jMenuFile.setText("Program");
-    jMenuFile.setName("Program");
-    jMenuFile.setMnemonic('p');
+    jMenuFile.setText("File");
+    jMenuFile.setName("File");
+    jMenuFile.setMnemonic('f');
     jMenuItemOpen.setAction(am.getOpenFileAction());
     // jMenuItemPrint.setText("Print");
     // jMenuItemPrint.setMnemonic('p');

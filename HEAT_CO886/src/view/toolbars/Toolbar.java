@@ -19,6 +19,9 @@ import managers.ActionManager;
 
 import javax.swing.JButton;
 import javax.swing.JToolBar;
+
+import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 import utils.Resources;
 
@@ -70,8 +73,14 @@ public class Toolbar {
    * @throws Exception If a button could not be added
    */
   public void createToolbar() throws Exception {
+	  
+	Dimension size = new Dimension(50,50);
+	
+	toolBar.setPreferredSize(size);
     toolBar.setFloatable(false);
+    //openButton.setPreferredSize(size);
     toolBar.add(openButton);
+    
     toolBar.add(closeButton);
     toolBar.addSeparator();
     toolBar.add(undoButton);

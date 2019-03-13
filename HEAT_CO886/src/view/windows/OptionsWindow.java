@@ -138,7 +138,7 @@ public class OptionsWindow {
     jcbOutputFontSize = new JComboBox();
     jcbCodeFontSize = new JComboBox();
  /* Populate the font size combo boxes */
-    for (int i = 10; i < 42; i++) {
+    for (int i = 10; i < 41; i++) {
       jcbOutputFontSize.addItem(String.valueOf(i));
       jcbCodeFontSize.addItem(String.valueOf(i));
     }
