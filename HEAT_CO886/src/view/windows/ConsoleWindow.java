@@ -688,12 +688,12 @@ public class ConsoleWindow {
 	      height = r.height;
 	    }
 
-<<<<<<< HEAT_CO886/src/view/windows/ConsoleWindow.java
+
 	    g.setColor(Color.WHITE);
 	    this.setBlinkRate(500);
-=======
+
 	    g.setColor(comp.getCaretColor());
->>>>>>> HEAT_CO886/src/view/windows/ConsoleWindow.java
+
 	   
 	    
 
