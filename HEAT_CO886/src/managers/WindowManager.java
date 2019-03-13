@@ -337,7 +337,8 @@ public class WindowManager {
     if (mainScreenFrame!=null)
 	  mainScreenFrame.setVisible(false);
     mainScreenFrame = new JFrame();
-    mainScreenFrame.setTitle("HEAT - Haskell Educational Advancement Tool");
+    mainScreenFrame.setTitle("HEAT - Haskell Educational Advancement Tool") ;
+    
     Image icon = Resources.getIcon("logo").getImage();
     mainScreenFrame.setIconImage(icon);
     
@@ -356,6 +357,7 @@ public class WindowManager {
 
     mainMenu = new MainMenu();
     toolbar = new Toolbar();
+    
 
     /* setup main container components */
     // JPanel mainScreenPanel = new JPanel();
@@ -368,10 +370,12 @@ public class WindowManager {
     displayWindow.getJTextPane().setMinimumSize(new Dimension(200,0));
     jSplitMain.setResizeWeight(0.6);
 	
-    jSplitMain.setOneTouchExpandable(true);
-    jSplitTree.setOneTouchExpandable(true);
-   
-
+    jSplitMain.setOneTouchExpandable(false);
+    
+    jSplitTree.setOneTouchExpandable(false); 
+  
+    
+    
     try {
       /* handle closing screen */
       mainScreenFrame.addWindowListener(new WindowAdapter() {
@@ -395,6 +399,7 @@ public class WindowManager {
       // jSplitTree.add(jSplitMain, JSplitPane.RIGHT);
      
       /* add menu and toolbar */
+ 
       mainScreenFrame.setJMenuBar(mainMenu.getToolBar());
       mainScreenFrame.getContentPane().add(toolbar.getToolBar(),
         BorderLayout.NORTH);
