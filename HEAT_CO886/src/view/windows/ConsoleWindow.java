@@ -344,10 +344,10 @@ public class ConsoleWindow {
                               errorCount+=1;
                           } else if (!im.checkForErrorContinuation(line)) {
                               error = false;
-                              playSound("audio\\ahem_x.wav");
+                              playSound("audio\\success_2.wav");
                           }
                           if (error) {
-                        	  playSound("audio\\failure.wav");
+                        	  playSound("audio\\failure_2.wav");
                         	  fixed(false);
 				  jtaIODoc.remove(currentLineStart,jtaIODoc.getLength()-currentLineStart);
                                   if (errorCount==1) {
