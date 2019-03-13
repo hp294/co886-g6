@@ -25,6 +25,7 @@ import java.util.logging.SimpleFormatter;
 import java.util.logging.Level;
 import java.io.File;
 
+//some comments
 /**
  * Main HEAT class
  */
