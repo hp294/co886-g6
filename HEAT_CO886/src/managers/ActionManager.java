@@ -27,6 +27,7 @@ import view.windows.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.File;
 
@@ -77,6 +78,7 @@ public class ActionManager {
 	      KeyStroke.getKeyStroke(KeyEvent.VK_D, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
   // editing actions
+  
   private UndoAction undoAction = new UndoAction("Undo", Resources.getIcon("undo16"),
 	      "Undo last change", new Integer(KeyEvent.VK_Z),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_Z, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
@@ -137,9 +139,10 @@ public class ActionManager {
 		    KeyStroke.getKeyStroke(KeyEvent.VK_T, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
   // help actions
-  private ShowHelpAction showHelpAction = new ShowHelpAction("Help",
+  private ShowHelpAction showHelpAction = new ShowHelpAction("Help", 
       Resources.getIcon("help16"), "Display help", new Integer(KeyEvent.VK_L),
       KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+  
   private ShowAboutAction showAboutAction = new ShowAboutAction("About",
       Resources.getIcon("info16"), "Display about information", null, null);
   
@@ -279,7 +282,7 @@ public class ActionManager {
   }
 
   public ActionManager.UndoAction getUndoAction() {
-    return undoAction;
+	 return undoAction;
   }
 
   public ActionManager.UndoAction getToolbarUndoAction() {

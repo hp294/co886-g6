@@ -17,12 +17,11 @@ package view.toolbars;
 
 import managers.ActionManager;
 
-
+import java.awt.Font;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
 
 // import com.apple.eawt.Application;
 
@@ -36,20 +35,21 @@ public class MainMenu {
   private JMenuBar jMenuBar = new JMenuBar();
 
   /* Program menu items */
-  private JMenu jMenuFile = new JMenu("File");
-  private JMenuItem jMenuItemOpen = new JMenuItem("Open");
+  private JMenu jMenuFile = new JMenu();
+  private JMenuItem jMenuItemOpen = new JMenuItem();
   private JMenuItem jMenuItemCloseFile = new JMenuItem();
   private JMenuItem jMenuItemPrint = new JMenuItem();
-  private JMenuItem jMenuItemOptions = new JMenuItem("Options");
-  private JMenuItem jMenuItemExit = new JMenuItem("Exit");
-  
-  //jMenuItemOptions.setTitle("Options");
+  private JMenuItem jMenuItemOptions = new JMenuItem();
+  private JMenuItem jMenuItemExit = new JMenuItem();
 
   /* Edit menu items */
   private JMenu jMenuEdit = new JMenu();
   private JMenuItem jMenuItemCopy = new JMenuItem();
   private JMenuItem jMenuItemCut = new JMenuItem();
   private JMenuItem jMenuItemPaste = new JMenuItem();
+  private JMenuItem jMenuItemSearch = new JMenuItem();
+  private JMenuItem jMenuItemUndo = new JMenuItem();
+  private JMenuItem jMenuItemRedo = new JMenuItem();
 
   /* Run menu items */
   private JMenu jMenuRun = new JMenu();
@@ -62,11 +62,11 @@ public class MainMenu {
   private JMenuItem jMenuItemContents = new JMenuItem();
   private JMenuItem jMenuItemAbout = new JMenuItem();
 
-  private ActionManager.UndoAction undoAction = ActionManager.getInstance()
+ private ActionManager.UndoAction undoAction = ActionManager.getInstance()
                                                              .getUndoAction();
-  private ActionManager.RedoAction redoAction = ActionManager.getInstance()
+ private ActionManager.RedoAction redoAction = ActionManager.getInstance()
                                                              .getRedoAction();
-  private JMenuItem jMenuItemSearch = new JMenuItem();
+  
 
   /**
    * Creates a new MainMenu object.
@@ -86,12 +86,18 @@ public class MainMenu {
    */
   public void jbInit() throws Exception {
     ActionManager am = ActionManager.getInstance();
-    
 
     /* File Menu */
-    jMenuFile.setText("File");
-    jMenuFile.setName("File");
-    jMenuFile.setMnemonic('f');
+    int headingFontSize = 40;
+    int fontSize = 30;
+    String fontType = "Arial";
+    jMenuFile.setFont(new Font(fontType, Font.PLAIN, headingFontSize));
+    jMenuItemExit.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemOptions.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemOpen.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemCloseFile.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuFile.setText("Program");
+    jMenuFile.setMnemonic('p');
     jMenuItemOpen.setAction(am.getOpenFileAction());
     // jMenuItemPrint.setText("Print");
     // jMenuItemPrint.setMnemonic('p');
@@ -114,10 +120,22 @@ public class MainMenu {
     jMenuFile.add(jMenuItemExit);
 
     /* Edit Menu */
+    jMenuEdit.setFont(new Font(fontType, Font.PLAIN, headingFontSize));
+    jMenuItemCut.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemCopy.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemPaste.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemSearch.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemUndo.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemRedo.setFont(new Font(fontType, Font.PLAIN, fontSize));
     jMenuEdit.setText("Edit");
-    jMenuEdit.add(undoAction);
-    jMenuEdit.add(redoAction);
-    jMenuEdit.addSeparator();
+    //jMenuEdit.add(undoAction);
+    jMenuItemUndo.setText("Undo");
+    jMenuItemUndo.setAction(am.getUndoAction());
+    jMenuItemUndo.setMnemonic('u');
+    //jMenuEdit.add(redoAction);
+    jMenuItemRedo.setText("Redo");
+    jMenuItemRedo.setAction(am.getRedoAction());
+    jMenuItemRedo.setMnemonic('u');
     jMenuEdit.setMnemonic('e');
     jMenuItemCut.setText("Cut");
     jMenuItemCut.setAction(am.getEditCutAction());
@@ -131,12 +149,19 @@ public class MainMenu {
     jMenuItemSearch.setText("Find");
     jMenuItemSearch.setAction(am.getSearchAction());
     jMenuItemPaste.setMnemonic('f');
+    jMenuEdit.add(jMenuItemUndo);
+    jMenuEdit.add(jMenuItemRedo);
     jMenuEdit.add(jMenuItemCut);
     jMenuEdit.add(jMenuItemCopy);
     jMenuEdit.add(jMenuItemPaste);
     jMenuEdit.add(jMenuItemSearch);
+    
 
     /* Run Menu */
+    jMenuRun.setFont(new Font(fontType, Font.PLAIN, headingFontSize));
+    jMenuItemCompile.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemInterrupt.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemTest.setFont(new Font(fontType, Font.PLAIN, fontSize));
     jMenuRun.setText("Run");
     jMenuRun.setMnemonic('r');
     jMenuItemCompile.setAction(am.getCompileAction());
@@ -153,6 +178,9 @@ public class MainMenu {
     jMenuRun.add(jMenuItemTest);
 
     /* Help Menu */
+    jMenuHelp.setFont(new Font(fontType, Font.PLAIN, headingFontSize));
+    jMenuItemAbout.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    jMenuItemContents.setFont(new Font(fontType, Font.PLAIN, fontSize));
     jMenuHelp.setText("Help");
     jMenuHelp.setMnemonic('H');
     jMenuItemContents.setAction(am.getShowHelpAction());
@@ -174,8 +202,6 @@ public class MainMenu {
     // app.setAboutHandler(null);
     // app.setPreferencesHandler(null);
     // app.setQuitHandler(null);
-    
-    
   }
 
   /**

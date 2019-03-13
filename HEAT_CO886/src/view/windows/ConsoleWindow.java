@@ -29,22 +29,16 @@ import utils.parser.ParsedTest;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultCaret;
 import javax.swing.text.Document;
-import javax.swing.text.JTextComponent;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
@@ -68,7 +62,7 @@ public class ConsoleWindow {
   private SimpleAttributeSet inputText = new SimpleAttributeSet();
   private SimpleAttributeSet promptText = new SimpleAttributeSet();
   
-  private Font displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 27);
+  private Font displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 40);
   
   private boolean commandEditing = true;
   private boolean withinPrompt = false;
@@ -104,17 +98,12 @@ public class ConsoleWindow {
     jspMain.setMinimumSize(new Dimension(0, 0));
     jspMain.setPreferredSize(new Dimension(100,150));
     jspMain.setAutoscrolls(true);
-    StyleConstants.setForeground(normalText, Color.white);
-    StyleConstants.setForeground(errorText,Color.green);
+    StyleConstants.setForeground(normalText, Color.BLACK);
+    StyleConstants.setForeground(errorText,Color.RED);
     StyleConstants.setForeground(infoText,Color.BLUE);
-    StyleConstants.setForeground(inputText,Color.white);
+    StyleConstants.setForeground(inputText,Color.DARK_GRAY);
     StyleConstants.setForeground(promptText,new Color(0,150,0));
     StyleConstants.setBold(inputText,true);
-    jtaInterpreterOutput.setBackground(Color.black);
-    
-    
-    StyleConstants.setBackground(normalText, Color.black);
-    StyleConstants.setBackground(errorText, Color.black);
     jtaInterpreterOutput.setEditable(true);
     /*Adding action map to the jtaInterpreterOutput*/
     jtaInterpreterOutput.getInputMap(JComponent.WHEN_FOCUSED)
@@ -133,19 +122,17 @@ public class ConsoleWindow {
     /* Use font size from settings if it exists */
     String fontSize = sm.getSetting(Settings.OUTPUT_FONT_SIZE);
 
-    if ((fontSize != null) && (fontSize != "")) {
-      try {
-        int size = Integer.parseInt(fontSize);
-        displayFont = new Font(Font.MONOSPACED, Font.PLAIN, size);
-      } catch (NumberFormatException nfe) {
+    //if ((fontSize != null) && (fontSize != "")) {
+      //try {
+        //int size = Integer.parseInt(fontSize);
+        displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 40);
+      //} catch (NumberFormatException nfe) {
         log.warning("[ConsoleWindow] - Failed to parse " +
           Settings.OUTPUT_FONT_SIZE + " setting, check value in settings file");
-      }
-    }
+      //}
+    //}
 
     jtaInterpreterOutput.setFont(displayFont);
-    jtaInterpreterOutput.setCaretColor(Color.WHITE);
-    jtaInterpreterOutput.setCaret(new CustomCaret());
     
     /* This document filter ensures that the fixed content of the console, 
      * i.e. the initial content up to fixedContentEnd, cannot be modified.
@@ -202,7 +189,6 @@ public class ConsoleWindow {
     }
     
     jtaInterpreterOutput.addCaretListener(new ConsoleCaretListener());
-    jtaInterpreterOutput.setCaretColor(Color.RED);
     
     jtaInterpreterOutput.addKeyListener(new KeyAdapter(){
 		public void keyTyped(KeyEvent e) { 
@@ -344,11 +330,9 @@ public class ConsoleWindow {
                               errorCount+=1;
                           } else if (!im.checkForErrorContinuation(line)) {
                               error = false;
-                              playSound("audio\\ahem_x.wav");
                           }
                           if (error) {
-                        	  playSound("audio\\failure.wav");
-                        	  fixed(false);
+				  fixed(false);
 				  jtaIODoc.remove(currentLineStart,jtaIODoc.getLength()-currentLineStart);
                                   if (errorCount==1) {
                                     jtaIODoc.insertString(currentLineStart,line,errorText);
@@ -378,7 +362,6 @@ public class ConsoleWindow {
 	  for (int i = 0; i < txt.length();i++) {
 		  simpleOutputAdd(txt.charAt(i),errorText);
 	  }
-	  
 	  fixedContentEnd = jtaIODoc.getLength();
 	  setCaretToEnd();
   }
@@ -629,100 +612,5 @@ public class ConsoleWindow {
   public boolean isEnabled() {
 	  return enabled;
   }
-
-// Method to play sound
-// Takes one parameter String the name of the file.
- public void playSound(String sound) {
-	 java.net.URL playSound = ClassLoader.getSystemResource(sound);
-	  try {
-	        Clip clip = AudioSystem.getClip();
-	        clip.open(AudioSystem.getAudioInputStream(playSound));
-	        
-	        clip.start(); 
-	        //Thread.sleep(clip.getMicrosecondLength()/10000);
-	      } catch (Exception e) {
-	        System.err.println(e.getMessage());
-	      }
-
- }
-
- // Custom caret
- 
- public static class CustomCaret extends DefaultCaret {
-
-	  protected synchronized void damage(Rectangle r) {
-	    if (r == null)
-	      return;
-	   
-	    x = r.x;
-	    y = r.y;
-	    height = r.height;
-
-	    if (width <= 0)
-	      width = getComponent().getWidth();
-
-	    repaint(); 
-	  }
-
-	  public void paint(Graphics g) {
-	    JTextComponent comp = getComponent();
-	    if (comp == null)
-	      return;
-
-	    int dot = getDot();
-	    Rectangle r = null;
-	    char dotChar;
-	    try {
-	      r = comp.modelToView(dot);
-	      if (r == null)
-	        return;
-	      dotChar = comp.getText(dot, 1).charAt(0);
-	    } catch (BadLocationException e) {
-	      return;
-	    }
-
-	    if ((x != r.x) || (y != r.y)) {
-	      repaint(); 
-	      x = r.x; 
-	      y = r.y;
-	      height = r.height;
-	    }
-
-	    g.setColor(Color.RED);
-	    this.setBlinkRate(500);
-	   
-	    
-
-	    if (dotChar == '\n') {
-	      int diam = r.height;
-	      if (isVisible())
-	        g.fillRect(r.x, r.y,r.height, r.height ); 
-	                                 
-	      return;
-	    }
-
-	    if (dotChar == '\t')
-	      try {
-	        Rectangle nextr = comp.modelToView(dot + 1);
-	        if ((r.y == nextr.y) && (r.x < nextr.x)) {
-	          width = nextr.x - r.x;
-	          if (isVisible())
-	            g.fillRect(r.x, r.y, 30, 30);
-	          return;
-	        } else
-	          dotChar = ' ';
-	      } catch (BadLocationException e) {
-	        dotChar = ' ';
-	      }
-
-	    width = g.getFontMetrics().charWidth(dotChar);
-	    if (isVisible())
-	      g.fillRect(r.x, r.y, 30, 30);
-	  }
-
- }
-
 }
-
-
   
