@@ -598,7 +598,7 @@ public class TextAreaPainter extends JComponent implements TabExpander {
     int width = leftBorder;
     int height = fm.getHeight();
 
-    gfx.setColor(Color.white);
+    gfx.setColor(Color.black);
     gfx.fillRect(0,y + fm.getLeading() + fm.getMaxDescent(),width,height);
 
     if (line >= 0) {
@@ -606,10 +606,10 @@ public class TextAreaPainter extends JComponent implements TabExpander {
       gfx.setFont(defaultFont);
 
       if (markLine == line + 1) {
-        gfx.setColor(Color.red);
+        gfx.setColor(Color.green);
         gfx.drawString(new Integer(line + 1).toString()+"*", 0/*x-leftBorder*/, y);
       } else {
-        gfx.setColor(Color.black);
+        gfx.setColor(Color.white);
         gfx.drawString(new Integer(line + 1).toString(), 0/*x-leftBorder*/, y);
       }
     }
