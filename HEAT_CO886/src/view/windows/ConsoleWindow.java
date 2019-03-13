@@ -144,7 +144,7 @@ public class ConsoleWindow {
     }
 
     jtaInterpreterOutput.setFont(displayFont);
-    jtaInterpreterOutput.setCaretColor(Color.RED);
+    jtaInterpreterOutput.setCaretColor(Color.WHITE);
     jtaInterpreterOutput.setCaret(new CustomCaret());
     
     /* This document filter ensures that the fixed content of the console, 
@@ -639,7 +639,7 @@ public class ConsoleWindow {
 	        clip.open(AudioSystem.getAudioInputStream(playSound));
 	        
 	        clip.start(); 
-	        Thread.sleep(clip.getMicrosecondLength()/10000);
+	        //Thread.sleep(clip.getMicrosecondLength()/10000);
 	      } catch (Exception e) {
 	        System.err.println(e.getMessage());
 	      }
@@ -688,14 +688,15 @@ public class ConsoleWindow {
 	      height = r.height;
 	    }
 
-	    g.setColor(comp.getCaretColor());
+	    g.setColor(Color.RED);
+	    this.setBlinkRate(500);
 	   
 	    
 
 	    if (dotChar == '\n') {
 	      int diam = r.height;
 	      if (isVisible())
-	        g.fillRect(r.x, r.y,20, r.height ); 
+	        g.fillRect(r.x, r.y,r.height, r.height ); 
 	                                 
 	      return;
 	    }
