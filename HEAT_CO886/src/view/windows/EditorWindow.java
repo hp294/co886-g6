@@ -28,10 +28,11 @@ import utils.jsyntax.JEditTextAreaWithMouseWheel;
 import utils.jsyntax.tokenmarker.HaskellTokenMarker;
 import utils.jsyntax.tokenmarker.LHSHaskellTokenMarker;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
 import javax.swing.KeyStroke;
-
+import javax.swing.text.StyleConstants;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -199,6 +200,10 @@ public class EditorWindow {
     SettingsManager sm = SettingsManager.getInstance();
     FileManager fm = FileManager.getInstance();
     jtaCodeView = new JEditTextAreaWithMouseWheel();
+    jtaCodeView.getPainter().setBackground(Color.black);
+    jtaCodeView.getPainter().setLineHighlightColor(Color.gray);
+    
+    
 
     String fontSizeStr = sm.getSetting(Settings.CODE_FONT_SIZE);
 

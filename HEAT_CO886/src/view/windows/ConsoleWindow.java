@@ -29,12 +29,9 @@ import utils.parser.ParsedTest;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
-
-
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -45,10 +42,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
-
-import javax.swing.text.Caret;
 import javax.swing.text.DefaultCaret;
-
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.SimpleAttributeSet;
@@ -110,12 +104,17 @@ public class ConsoleWindow {
     jspMain.setMinimumSize(new Dimension(0, 0));
     jspMain.setPreferredSize(new Dimension(100,150));
     jspMain.setAutoscrolls(true);
-    StyleConstants.setForeground(normalText, Color.BLACK);
-    StyleConstants.setForeground(errorText,Color.RED);
+    StyleConstants.setForeground(normalText, Color.white);
+    StyleConstants.setForeground(errorText,Color.green);
     StyleConstants.setForeground(infoText,Color.BLUE);
-    StyleConstants.setForeground(inputText,Color.DARK_GRAY);
+    StyleConstants.setForeground(inputText,Color.white);
     StyleConstants.setForeground(promptText,new Color(0,150,0));
     StyleConstants.setBold(inputText,true);
+    jtaInterpreterOutput.setBackground(Color.black);
+    
+    
+    StyleConstants.setBackground(normalText, Color.black);
+    StyleConstants.setBackground(errorText, Color.black);
     jtaInterpreterOutput.setEditable(true);
     /*Adding action map to the jtaInterpreterOutput*/
     jtaInterpreterOutput.getInputMap(JComponent.WHEN_FOCUSED)
@@ -141,17 +140,12 @@ public class ConsoleWindow {
       //} catch (NumberFormatException nfe) {
         log.warning("[ConsoleWindow] - Failed to parse " +
           Settings.OUTPUT_FONT_SIZE + " setting, check value in settings file");
-      //}
+    //  }
     //}
-
 
     jtaInterpreterOutput.setFont(displayFont);
     jtaInterpreterOutput.setCaretColor(Color.white);
     jtaInterpreterOutput.setCaret(new CustomCaret());
-
-
-    jtaInterpreterOutput.setFont(displayFont);
-
     
     /* This document filter ensures that the fixed content of the console, 
      * i.e. the initial content up to fixedContentEnd, cannot be modified.
@@ -208,11 +202,7 @@ public class ConsoleWindow {
     }
     
     jtaInterpreterOutput.addCaretListener(new ConsoleCaretListener());
-
-
     jtaInterpreterOutput.setCaretColor(Color.white);
-
-
     
     jtaInterpreterOutput.addKeyListener(new KeyAdapter(){
 		public void keyTyped(KeyEvent e) { 
@@ -354,23 +344,11 @@ public class ConsoleWindow {
                               errorCount+=1;
                           } else if (!im.checkForErrorContinuation(line)) {
                               error = false;
-
-
                               playSound("audio\\success_2.wav");
-
-
                           }
                           if (error) {
-
-
                         	  playSound("audio\\failure_2.wav");
                         	  fixed(false);
-
-				  fixed(false);
-
-
-				  fixed(false);
-
 				  jtaIODoc.remove(currentLineStart,jtaIODoc.getLength()-currentLineStart);
                                   if (errorCount==1) {
                                     jtaIODoc.insertString(currentLineStart,line,errorText);
@@ -400,6 +378,7 @@ public class ConsoleWindow {
 	  for (int i = 0; i < txt.length();i++) {
 		  simpleOutputAdd(txt.charAt(i),errorText);
 	  }
+	  
 	  fixedContentEnd = jtaIODoc.getLength();
 	  setCaretToEnd();
   }
@@ -651,8 +630,6 @@ public class ConsoleWindow {
 	  return enabled;
   }
 
-
-
 // Method to play sound
 // Takes one parameter String the name of the file.
  public void playSound(String sound) {
@@ -749,7 +726,7 @@ public class ConsoleWindow {
 
  }
 
-
-
 }
+
+
   

@@ -28,6 +28,7 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -92,8 +93,9 @@ public class TreeWindow
         refreshButton = new JButton(am.getRefreshTreeAction());
         treeScrollPane = new JScrollPane();
 
-        treePanel.setMinimumSize(new Dimension(0, 10));
+        treePanel.setMinimumSize(new Dimension(50, 50));
         treePanel.setPreferredSize(new Dimension(150, 10));
+      
 
         // TREE
         DefaultMutableTreeNode top = new DefaultMutableTreeNode("Summary");
@@ -103,6 +105,13 @@ public class TreeWindow
         tree.setRootVisible(false);
         ToolTipManager.sharedInstance().registerComponent(tree);
         tree.setCellRenderer(new MyRenderer());
+        tree.setBackground(Color.black);
+     
+        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
+        renderer.setTextSelectionColor(Color.white);
+        renderer.setTextNonSelectionColor(Color.white); 
+        renderer.setBackgroundSelectionColor(Color.blue);
+        renderer.setBackgroundNonSelectionColor(Color.black);
 
         /*
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
@@ -158,6 +167,7 @@ public class TreeWindow
         top.add(new DefaultMutableTreeNode("Functions / constants"));
         top.add(new DefaultMutableTreeNode("Algebraic data types"));
         top.add(new DefaultMutableTreeNode("Type synonyms"));
+        
     }
     
     /**

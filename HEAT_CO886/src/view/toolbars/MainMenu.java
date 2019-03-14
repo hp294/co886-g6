@@ -19,9 +19,11 @@ import managers.ActionManager;
 
 import java.awt.Font;
 
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
 
 // import com.apple.eawt.Application;
 
@@ -35,19 +37,21 @@ public class MainMenu {
   private JMenuBar jMenuBar = new JMenuBar();
 
   /* Program menu items */
-  private JMenu jMenuFile = new JMenu();
-  private JMenuItem jMenuItemOpen = new JMenuItem();
+  private JMenu jMenuFile = new JMenu("File");
+  private JMenuItem jMenuItemOpen = new JMenuItem("Open");
   private JMenuItem jMenuItemCloseFile = new JMenuItem();
   private JMenuItem jMenuItemPrint = new JMenuItem();
-  private JMenuItem jMenuItemOptions = new JMenuItem();
-  private JMenuItem jMenuItemExit = new JMenuItem();
+  private JMenuItem jMenuItemOptions = new JMenuItem("Options");
+  private JMenuItem jMenuItemExit = new JMenuItem("Exit");
+  
+  //jMenuItemOptions.setTitle("Options");
 
   /* Edit menu items */
   private JMenu jMenuEdit = new JMenu();
   private JMenuItem jMenuItemCopy = new JMenuItem();
   private JMenuItem jMenuItemCut = new JMenuItem();
   private JMenuItem jMenuItemPaste = new JMenuItem();
-  private JMenuItem jMenuItemSearch = new JMenuItem();
+  
   private JMenuItem jMenuItemUndo = new JMenuItem();
   private JMenuItem jMenuItemRedo = new JMenuItem();
 
@@ -62,11 +66,11 @@ public class MainMenu {
   private JMenuItem jMenuItemContents = new JMenuItem();
   private JMenuItem jMenuItemAbout = new JMenuItem();
 
- private ActionManager.UndoAction undoAction = ActionManager.getInstance()
+  private ActionManager.UndoAction undoAction = ActionManager.getInstance()
                                                              .getUndoAction();
- private ActionManager.RedoAction redoAction = ActionManager.getInstance()
+  private ActionManager.RedoAction redoAction = ActionManager.getInstance()
                                                              .getRedoAction();
-  
+  private JMenuItem jMenuItemSearch = new JMenuItem();
 
   /**
    * Creates a new MainMenu object.
@@ -86,6 +90,7 @@ public class MainMenu {
    */
   public void jbInit() throws Exception {
     ActionManager am = ActionManager.getInstance();
+    
 
     /* File Menu */
     int headingFontSize = 40;
@@ -96,8 +101,8 @@ public class MainMenu {
     jMenuItemOptions.setFont(new Font(fontType, Font.PLAIN, fontSize));
     jMenuItemOpen.setFont(new Font(fontType, Font.PLAIN, fontSize));
     jMenuItemCloseFile.setFont(new Font(fontType, Font.PLAIN, fontSize));
-    jMenuFile.setText("Program");
-    jMenuFile.setMnemonic('p');
+    jMenuFile.setText("File");
+    jMenuFile.setMnemonic('f');
     jMenuItemOpen.setAction(am.getOpenFileAction());
     // jMenuItemPrint.setText("Print");
     // jMenuItemPrint.setMnemonic('p');
@@ -202,6 +207,8 @@ public class MainMenu {
     // app.setAboutHandler(null);
     // app.setPreferencesHandler(null);
     // app.setQuitHandler(null);
+    
+    
   }
 
   /**
