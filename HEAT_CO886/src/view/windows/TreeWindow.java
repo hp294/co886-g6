@@ -31,6 +31,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseListener;
@@ -93,7 +94,7 @@ public class TreeWindow
         refreshButton = new JButton(am.getRefreshTreeAction());
         treeScrollPane = new JScrollPane();
 
-        treePanel.setMinimumSize(new Dimension(50, 50));
+        treePanel.setMinimumSize(new Dimension(200, 50));
         treePanel.setPreferredSize(new Dimension(150, 10));
       
 
@@ -101,8 +102,8 @@ public class TreeWindow
         DefaultMutableTreeNode top = new DefaultMutableTreeNode("Summary");
     	createNodes(top);
     	tree = new JTree(top);
-        tree.setRowHeight(40);
-        tree.setRootVisible(true);
+        tree.setRowHeight(18);
+        tree.setRootVisible(false);
         ToolTipManager.sharedInstance().registerComponent(tree);
         tree.setCellRenderer(new MyRenderer());
         tree.setBackground(Color.black);
@@ -112,6 +113,7 @@ public class TreeWindow
         renderer.setTextNonSelectionColor(Color.white); 
         renderer.setBackgroundSelectionColor(Color.blue);
         renderer.setBackgroundNonSelectionColor(Color.black);
+        renderer.setFont(new Font("Arial", Font.PLAIN, 15));
 
         /*
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();

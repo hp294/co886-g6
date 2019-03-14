@@ -68,7 +68,7 @@ public class ConsoleWindow {
   private SimpleAttributeSet inputText = new SimpleAttributeSet();
   private SimpleAttributeSet promptText = new SimpleAttributeSet();
   
-  private Font displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 27);
+  private Font displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 25);
   
   private boolean commandEditing = true;
   private boolean withinPrompt = false;
@@ -133,15 +133,15 @@ public class ConsoleWindow {
     /* Use font size from settings if it exists */
     String fontSize = sm.getSetting(Settings.OUTPUT_FONT_SIZE);
 
-    if ((fontSize != null) && (fontSize != "")) {
-      try {
-        int size = Integer.parseInt(fontSize);
-        displayFont = new Font(Font.MONOSPACED, Font.PLAIN, size);
-      } catch (NumberFormatException nfe) {
+    //if ((fontSize != null) && (fontSize != "")) {
+      //try {
+        //int size = Integer.parseInt(fontSize);
+        displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 25);
+      //} catch (NumberFormatException nfe) {
         log.warning("[ConsoleWindow] - Failed to parse " +
           Settings.OUTPUT_FONT_SIZE + " setting, check value in settings file");
-      }
-    }
+    //  }
+    //}
 
     jtaInterpreterOutput.setFont(displayFont);
     jtaInterpreterOutput.setCaretColor(Color.white);

@@ -44,7 +44,7 @@ import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-
+import java.awt.Font;
 /**
  * Window for altering HEATs settings
  */
@@ -88,15 +88,37 @@ public class OptionsWindow {
         }
       });
     JPanel panelInterpreterPath = new JPanel();
-    panelInterpreterPath.add(new JLabel("Full path of the Haskell interpreter ghci (not ghc or winghci!): "));
+    
+    //panelInterpreterPath.add(new JLabel("Full path of the Haskell interpreter ghci (not ghc or winghci!): "));
+    JLabel intFontInterpreter = new JLabel("Full path of the Haskell interpreter ghci (not ghc or winghci!): ");
+    intFontInterpreter.setFont(new Font("Arial", Font.PLAIN, 18));
+    panelInterpreterPath.add(intFontInterpreter);
+
+    
+    
+    
     panelInterpreterPath.add(browse);
     panelInterpreter.add(panelInterpreterPath);
     jTextFieldInterpreterPath = new JTextField();
     panelInterpreter.add(jTextFieldInterpreterPath);
     panelInterpreter.add(new JSeparator(SwingConstants.HORIZONTAL));
-    // panelInterpreter.add(new JLabel("")); // some vertical space
+    panelInterpreter.add(new JLabel("")); // some vertical space
     JPanel panelOptionsInfo = new JPanel();
-    panelOptionsInfo.add(new JLabel("Command line options for the Haskell interpreter:"));
+    
+    
+    
+    
+    //panelOptionsInfo.add(new JLabel("Command line options for the Haskell interpreter:"));
+    JLabel intFontPanel = new JLabel("Command line options for the Haskell interpreter: ");
+    intFontPanel.setFont(new Font("Arial", Font.PLAIN, 18));
+    panelOptionsInfo.add(intFontPanel);
+
+   
+    
+    
+    
+    
+    
     panelInterpreter.add(panelOptionsInfo);
     jTextFieldOptions = new JTextField();
     panelInterpreter.add(jTextFieldOptions);
@@ -110,7 +132,13 @@ public class OptionsWindow {
         }
       });
     JPanel panelLibraryPath = new JPanel();
-    panelLibraryPath.add(new JLabel("Directory for additional Haskell libraries: "));
+    //panelLibraryPath.add(new JLabel("Directory for additional Haskell libraries: "));
+    JLabel intFontPath = new JLabel("Command line options for the Haskell interpreter: ");
+    intFontPath.setFont(new Font("Arial", Font.PLAIN, 18));
+    panelLibraryPath.add(intFontPath);
+    
+    
+    
     panelLibraryPath.add(browseL);
     panelInterpreter.add(panelLibraryPath);
     jTextFieldLibraryPath = new JTextField();
@@ -119,16 +147,37 @@ public class OptionsWindow {
     // panel for test settings
     JPanel panelTest = new JPanel(new GridLayout(0,1));
     JPanel testFunction = new JPanel(new GridLayout(0,1));
-    testFunction.add(new JLabel("Test function applied to a test property"));
-    testFunction.add(new JLabel("(e.g. \"quickCheck\" for QuickCheck or \"\" (nothing) for Boolean properties)"));
+    //testFunction.add(new JLabel("Test function applied to a test property"));
+    JLabel intFontTest = new JLabel("Test function applied to a test property");
+    intFontTest.setFont(new Font("Arial", Font.PLAIN, 18));
+    testFunction.add(intFontTest);
+      
+    
+    //testFunction.add(new JLabel("(e.g. \"quickCheck\" for QuickCheck or \"\" (nothing) for Boolean properties)"));
+    JLabel intFontFunction = new JLabel("(e.g. \\\"quickCheck\\\" for QuickCheck or \\\"\\\" (nothing) for Boolean properties)");
+    intFontFunction.setFont(new Font("Arial", Font.PLAIN, 18));
+    testFunction.add(intFontFunction);
+    
+    
     jTextFieldTestFunction = new JTextField();
     testFunction.add(jTextFieldTestFunction);
     panelTest.add(testFunction);
     // panelTest.add(new JLabel(""));  // some vertical space
     panelTest.add(new JSeparator(SwingConstants.HORIZONTAL));
     JPanel testPositive = new JPanel(new GridLayout(0,1));
-    testPositive.add(new JLabel("String that appears in successful test output"));
-    testPositive.add(new JLabel("(e.g. \"+++ OK, passed\" for QuickCheck or \"True\" for Boolean properties)"));
+    //testPositive.add(new JLabel("String that appears in successful test output"));
+    JLabel intFontPositive = new JLabel("(e.g. \\\"quickCheck\\\" for QuickCheck or \\\"\\\" (nothing) for Boolean properties)");
+    intFontPositive.setFont(new Font("Arial", Font.PLAIN, 18));
+    testPositive.add(intFontPositive);
+    
+    
+    //testPositive.add(new JLabel("(e.g. \"+++ OK, passed\" for QuickCheck or \"True\" for Boolean properties)"));
+    JLabel intFontTestPositive = new JLabel("(e.g. \\\"quickCheck\\\" for QuickCheck or \\\"\\\" (nothing) for Boolean properties)");
+    intFontTestPositive.setFont(new Font("Arial", Font.PLAIN, 18));
+    testPositive.add(intFontTestPositive);
+    
+    
+    
     jTextFieldTestPositive = new JTextField();
     testPositive.add(jTextFieldTestPositive);
     panelTest.add(testPositive);
@@ -143,17 +192,29 @@ public class OptionsWindow {
       jcbCodeFontSize.addItem(String.valueOf(i));
     }
     JPanel editorFontSize = new JPanel();
-    editorFontSize.add(new JLabel("Editor font size: "));
+   
+    
+    //editorFontSize.add(new JLabel("Editor font size: "));
+    JLabel intFontEd = new JLabel("Editor font size:");
+    intFontEd.setFont(new Font("Arial", Font.PLAIN, 18));
+    editorFontSize.add(intFontEd);
     editorFontSize.add(jcbCodeFontSize);
     JPanel interpreterFontSize = new JPanel();
-    interpreterFontSize.add(new JLabel("Interpreter font size:"));
+    
+    
+    //interpreterFontSize.add(new JLabel("Interpreter font size:"));
+    JLabel intFont = new JLabel("Interpreter font size:");
+    intFont.setFont(new Font("Arial", Font.PLAIN, 18));
+    interpreterFontSize.add(intFont);
     interpreterFontSize.add(jcbOutputFontSize);
     panelFontSizes.add(editorFontSize);
     panelFontSizes.add(interpreterFontSize);
     
     // combine panels on tabbed pane
     JTabbedPane tabOptions = new JTabbedPane();
+    tabOptions.setFont( new Font( "Arial", Font.BOLD|Font.ITALIC, 24 ) );
     tabOptions.addTab("Haskell Interpreter", panelInterpreter);
+    
     tabOptions.addTab("Property Tests", panelTest);
     tabOptions.addTab("Font Sizes", panelFontSizes);
     

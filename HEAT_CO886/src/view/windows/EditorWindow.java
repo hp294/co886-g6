@@ -43,13 +43,13 @@ public class EditorWindow {
   private static Logger log = Logger.getLogger("heat");
   private static JEditTextArea jtaCodeView;
   private WindowManager wm = WindowManager.getInstance();
-  
+
   /* If the document has been modified */
   private boolean hasBeenModified = false;
 
   /* If it has been saved */
   private boolean needsSaving;
-  private int fontSize = 12;
+  private int fontSize = 25;
   
   /* Popup menu for the display window*/
   private JPopupMenu popMenu = new JPopupMenu("Edit");
@@ -66,9 +66,6 @@ public class EditorWindow {
   public EditorWindow() {
     try {
       jbInit();
-      
-
-      
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -81,9 +78,7 @@ public class EditorWindow {
           on = false;
       }
       enabled = on;
-      
       jtaCodeView.setEditable(on);
-      
   }
   
   public boolean isEnabled() {
@@ -258,8 +253,6 @@ public class EditorWindow {
     
     jtaCodeView.setHorizontalScrollBarEnabled(enabled);
     setEnabled(false);
-    
-   
 }
  
 
@@ -283,8 +276,6 @@ public class EditorWindow {
   public void setEditorContent(String toDisplay) {
     jtaCodeView.setText(toDisplay);
     jtaCodeView.setCaretPosition(0);
-    
-    
   }
 
   /**

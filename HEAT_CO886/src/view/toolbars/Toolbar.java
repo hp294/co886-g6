@@ -78,9 +78,7 @@ public class Toolbar {
 	
 	toolBar.setPreferredSize(size);
     toolBar.setFloatable(false);
-    //openButton.setPreferredSize(size);
     toolBar.add(openButton);
-    
     toolBar.add(closeButton);
     toolBar.addSeparator();
     toolBar.add(undoButton);
