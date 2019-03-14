@@ -22,8 +22,10 @@ import java.util.logging.Logger;
 import utils.Resources;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,6 +48,7 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
@@ -150,6 +153,12 @@ public class HelpWindow {
         }
       });
     treeView.setMinimumSize(minimumSize);
+    
+    
+    tree.setRowHeight(15);
+    DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
+    
+    renderer.setFont(new Font("Arial", Font.PLAIN, 15));
 
     jPanel2.add(jBack, BorderLayout.EAST);
     jPanel2.add(jForward, null);
@@ -239,6 +248,8 @@ public class HelpWindow {
     top.add(new DefaultMutableTreeNode(new BookInfo("Checking Properties","properties")));
     top.add(new DefaultMutableTreeNode(new BookInfo("Haskell Interpreter","interpreter")));
     top.add(new DefaultMutableTreeNode(new BookInfo("Limitations ... bugs","problems")));
+    
+  
   }
 
   public void show() {
