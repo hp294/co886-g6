@@ -29,7 +29,11 @@ import utils.jsyntax.tokenmarker.HaskellTokenMarker;
 import utils.jsyntax.tokenmarker.LHSHaskellTokenMarker;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.*;
 import javax.swing.KeyStroke;
 import javax.swing.text.StyleConstants;
@@ -200,9 +204,12 @@ public class EditorWindow {
     SettingsManager sm = SettingsManager.getInstance();
     FileManager fm = FileManager.getInstance();
     jtaCodeView = new JEditTextAreaWithMouseWheel();
-    jtaCodeView.getPainter().setBackground(Color.black);
+    jtaCodeView.getPainter().setBackground(Color.BLACK);
     jtaCodeView.getPainter().setLineHighlightColor(Color.gray);
-    
+    jtaCodeView.getPainter().setCaretColor(Color.WHITE);
+  
+    CreateCursor();
+   
     
 
     String fontSizeStr = sm.getSetting(Settings.CODE_FONT_SIZE);
@@ -299,6 +306,16 @@ public class EditorWindow {
   public static JEditTextArea getTextPane() {
     return jtaCodeView;
   }
+  
+  public void CreateCursor() {
+		Toolkit t1 = Toolkit.getDefaultToolkit();
+		Image img = t1.getImage("X:\\home\\EclipseHeat\\g6\\HEAT_CO886\\src\\icons\\crosshair.png");
+	  	Point point = new Point(0,0);
+	  	Cursor cursor = t1.createCustomCursor(img, point, "Cursor");
+	  	jtaCodeView.getPainter().setCursor(cursor);
+	}
+  
+  
   
  
 }

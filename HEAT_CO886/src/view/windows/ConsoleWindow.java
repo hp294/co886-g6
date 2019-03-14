@@ -22,14 +22,17 @@ import managers.WindowManager;
 
 import java.util.logging.Logger;
 
-import utils.InterpreterParser;
+
 import utils.Settings;
 import utils.parser.ParsedTest;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
@@ -146,6 +149,7 @@ public class ConsoleWindow {
     jtaInterpreterOutput.setFont(displayFont);
     jtaInterpreterOutput.setCaretColor(Color.white);
     jtaInterpreterOutput.setCaret(new CustomCaret());
+    CreateCursor();
     
     /* This document filter ensures that the fixed content of the console, 
      * i.e. the initial content up to fixedContentEnd, cannot be modified.
@@ -651,9 +655,7 @@ public class ConsoleWindow {
  public static class CustomCaret extends DefaultCaret {
 
 	  protected synchronized void damage(Rectangle r) {
-	    if (r == null)
-	      return;
-	   
+	 
 	    x = r.x;
 	    y = r.y;
 	    height = r.height;
@@ -688,43 +690,35 @@ public class ConsoleWindow {
 	      height = r.height;
 	    }
 
-
 	    g.setColor(Color.WHITE);
-	    this.setBlinkRate(500);
+	    this.setBlinkRate(400);
 
-	    g.setColor(comp.getCaretColor());
-
-	   
-	    
 
 	    if (dotChar == '\n') {
 	      int diam = r.height;
 	      if (isVisible())
-	        g.fillRect(r.x, r.y,20, r.height ); 
+	        g.fillRect(r.x, r.y,r.height, r.height ); 
 	                                 
 	      return;
 	    }
 
-	    if (dotChar == '\t')
-	      try {
-	        Rectangle nextr = comp.modelToView(dot + 1);
-	        if ((r.y == nextr.y) && (r.x < nextr.x)) {
-	          width = nextr.x - r.x;
-	          if (isVisible())
-	            g.fillRect(r.x, r.y, 30, 30);
-	          return;
-	        } else
-	          dotChar = ' ';
-	      } catch (BadLocationException e) {
-	        dotChar = ' ';
-	      }
-
 	    width = g.getFontMetrics().charWidth(dotChar);
 	    if (isVisible())
-	      g.fillRect(r.x, r.y, 30, 30);
+	      g.fillRect(r.x, r.y, r.height, r.height);
 	  }
 
  }
+ 
+ public void CreateCursor() {
+	Toolkit t1 = Toolkit.getDefaultToolkit();
+	Image img = t1.getImage("X:\\home\\EclipseHeat\\g6\\HEAT_CO886\\src\\icons\\crosshair.png");
+  	Point point = new Point(0,0);
+  	Cursor cursor = t1.createCustomCursor(img, point, "Cursor");
+  	jtaInterpreterOutput.setCursor(cursor);
+}
+ 
+ 
+ 
 
 }
 
