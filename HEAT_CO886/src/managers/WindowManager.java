@@ -668,7 +668,7 @@ public class WindowManager {
 	 
 
     if(fileName == null || fileName.trim().equals(""))
-      getMainScreenFrame().setTitle("HEAT - Haskell Educational Advancement Tool");
+      getMainScreenFrame().setTitle("HEAT - Haskell Educational Advancement ");
     else
       getMainScreenFrame().setTitle("HEAT - "+fileName);
   }

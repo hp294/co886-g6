@@ -351,14 +351,16 @@ public class ConsoleWindow {
                               playSound("audio\\success_2.wav");
                           }
                           if (error) {
-                        	  playSound("audio\\failure_2.wav");
+                        	  playSound("audio\\failure_3.wav");
                         	  fixed(false);
+                        	 
 				  jtaIODoc.remove(currentLineStart,jtaIODoc.getLength()-currentLineStart);
                                   if (errorCount==1) {
                                     jtaIODoc.insertString(currentLineStart,line,errorText);
                                   }
 				  fixed(true);
 			  }
+                          
 			  currentLineStart = jtaIODoc.getLength();
                           // log.info("[ConsoleWindow] currentLineStart " + currentLineStart);
 		  }
@@ -643,7 +645,7 @@ public class ConsoleWindow {
 	        clip.open(AudioSystem.getAudioInputStream(playSound));
 	        
 	        clip.start(); 
-	        Thread.sleep(clip.getMicrosecondLength()/10000);
+	        //Thread.sleep(clip.getMicrosecondLength()/1000);
 	      } catch (Exception e) {
 	        System.err.println(e.getMessage());
 	      }
@@ -709,6 +711,8 @@ public class ConsoleWindow {
 
  }
  
+ 
+ // Custom mouse cursor
  public void CreateCursor() {
 	Toolkit t1 = Toolkit.getDefaultToolkit();
 	java.net.URL imageURL = Resources.class.getClassLoader().getResource("\\icons\\crosshair.png");
