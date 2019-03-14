@@ -27,9 +27,12 @@ import utils.Settings;
 import utils.parser.ParsedTest;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
@@ -146,6 +149,7 @@ public class ConsoleWindow {
     jtaInterpreterOutput.setFont(displayFont);
     jtaInterpreterOutput.setCaretColor(Color.RED);
     jtaInterpreterOutput.setCaret(new CustomCaret());
+    CreateCursor();
     
     /* This document filter ensures that the fixed content of the console, 
      * i.e. the initial content up to fixedContentEnd, cannot be modified.
@@ -704,6 +708,17 @@ public class ConsoleWindow {
 	  }
 
  }
+ 
+ public void CreateCursor() {
+	Toolkit t1 = Toolkit.getDefaultToolkit();
+	Image img = t1.getImage("X:\\home\\EclipseHeat\\g6\\HEAT_CO886\\src\\icons\\crosshair.png");
+  	Point point = new Point(0,0);
+  	Cursor cursor = t1.createCustomCursor(img, point, "Cursor");
+  	jtaInterpreterOutput.setCursor(cursor);
+}
+ 
+ 
+ 
 
 }
 
