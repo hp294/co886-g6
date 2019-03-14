@@ -29,8 +29,12 @@ import utils.parser.ParsedTest;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -41,8 +45,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
+
 import javax.swing.text.Caret;
 import javax.swing.text.DefaultCaret;
+
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.SimpleAttributeSet;
@@ -138,9 +144,13 @@ public class ConsoleWindow {
       //}
     //}
 
+
     jtaInterpreterOutput.setFont(displayFont);
     jtaInterpreterOutput.setCaretColor(Color.white);
     jtaInterpreterOutput.setCaret(new CustomCaret());
+
+
+    jtaInterpreterOutput.setFont(displayFont);
 
     
     /* This document filter ensures that the fixed content of the console, 
@@ -199,7 +209,9 @@ public class ConsoleWindow {
     
     jtaInterpreterOutput.addCaretListener(new ConsoleCaretListener());
 
+
     jtaInterpreterOutput.setCaretColor(Color.white);
+
 
     
     jtaInterpreterOutput.addKeyListener(new KeyAdapter(){
@@ -343,13 +355,19 @@ public class ConsoleWindow {
                           } else if (!im.checkForErrorContinuation(line)) {
                               error = false;
 
+
                               playSound("audio\\success_2.wav");
+
 
                           }
                           if (error) {
 
+
                         	  playSound("audio\\failure_2.wav");
                         	  fixed(false);
+
+				  fixed(false);
+
 
 				  fixed(false);
 
@@ -634,6 +652,7 @@ public class ConsoleWindow {
   }
 
 
+
 // Method to play sound
 // Takes one parameter String the name of the file.
  public void playSound(String sound) {
@@ -729,6 +748,7 @@ public class ConsoleWindow {
 	  }
 
  }
+
 
 
 }
