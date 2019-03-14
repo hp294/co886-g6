@@ -655,7 +655,7 @@ public class WindowManager {
   public void setTitleFileName(String fileName) {
 
 
-	  getMainScreenFrame().setFont(new Font("Arial", Font.PLAIN, 40));
+	  getMainScreenFrame().setFont(new Font("Arial", Font.PLAIN, 25));
 	 
 
     if(fileName == null || fileName.trim().equals(""))

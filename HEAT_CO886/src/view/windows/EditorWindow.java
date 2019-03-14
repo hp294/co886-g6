@@ -49,7 +49,7 @@ public class EditorWindow {
 
   /* If it has been saved */
   private boolean needsSaving;
-  private int fontSize = 12;
+  private int fontSize = 25;
   
   /* Popup menu for the display window*/
   private JPopupMenu popMenu = new JPopupMenu("Edit");

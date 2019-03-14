@@ -93,7 +93,7 @@ public class MainMenu {
     
 
     /* File Menu */
-    int headingFontSize = 40;
+    int headingFontSize = 25;
     int fontSize = 30;
     String fontType = "Arial";
     jMenuFile.setFont(new Font(fontType, Font.PLAIN, headingFontSize));

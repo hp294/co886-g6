@@ -64,7 +64,7 @@ public class AboutWindow {
     jpMain.setLayout(borderLayout1);
     jPanel1.setLayout(flowLayout1);
     jlHeat.setText("HEAT");
-    jlHeat.setFont(new Font("Dialog", 1, 40));
+    jlHeat.setFont(new Font("Dialog", 1, 25));
     flowLayout1.setAlignment(0);
     jLabel1.setText("Version 5.04");
     jPanel2.setLayout(flowLayout2);

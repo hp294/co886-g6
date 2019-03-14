@@ -68,7 +68,7 @@ public class ConsoleWindow {
   private SimpleAttributeSet inputText = new SimpleAttributeSet();
   private SimpleAttributeSet promptText = new SimpleAttributeSet();
   
-  private Font displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 40);
+  private Font displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 25);
   
   private boolean commandEditing = true;
   private boolean withinPrompt = false;
@@ -136,7 +136,7 @@ public class ConsoleWindow {
     //if ((fontSize != null) && (fontSize != "")) {
       //try {
         //int size = Integer.parseInt(fontSize);
-        displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 40);
+        displayFont = new Font(Font.MONOSPACED, Font.PLAIN, 25);
       //} catch (NumberFormatException nfe) {
         log.warning("[ConsoleWindow] - Failed to parse " +
           Settings.OUTPUT_FONT_SIZE + " setting, check value in settings file");
