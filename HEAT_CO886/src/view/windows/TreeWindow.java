@@ -102,7 +102,7 @@ public class TreeWindow
         DefaultMutableTreeNode top = new DefaultMutableTreeNode("Summary");
     	createNodes(top);
     	tree = new JTree(top);
-        tree.setRowHeight(18);
+        tree.setRowHeight(35);
         tree.setRootVisible(false);
         ToolTipManager.sharedInstance().registerComponent(tree);
         tree.setCellRenderer(new MyRenderer());
