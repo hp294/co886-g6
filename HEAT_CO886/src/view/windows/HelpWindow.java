@@ -20,6 +20,7 @@ import managers.WindowManager;
 import java.util.logging.Logger;
 
 import utils.Resources;
+import utils.jsyntax.JEditTextAreaWithMouseWheel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -104,9 +105,23 @@ public class HelpWindow {
 
     tree = new JTree(top);
     tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-
+    
+    tree.setBackground(Color.black);
+    
+    DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
+    renderer.setTextSelectionColor(Color.white);
+    renderer.setTextNonSelectionColor(Color.white); 
+    renderer.setBackgroundSelectionColor(Color.blue);
+    renderer.setBackgroundNonSelectionColor(Color.black);
+    renderer.setFont(new Font("Arial", Font.PLAIN, 15));
+    
     JScrollPane treeView = new JScrollPane(tree);
     htmlPane = new JEditorPane();
+     
+   // htmlPane.setFont(new Font("monospaced", Font.PLAIN, 18));
+    htmlPane.setBackground(Color.BLACK);
+    htmlPane.setCaretColor(Color.WHITE);
+
     htmlPane.setEditable(false);
     htmlPane.addHyperlinkListener(new Hyperactive());
     initHelp();
@@ -156,7 +171,7 @@ public class HelpWindow {
     
     
     tree.setRowHeight(15);
-    DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
+    //DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
     
     renderer.setFont(new Font("Arial", Font.PLAIN, 15));
 
