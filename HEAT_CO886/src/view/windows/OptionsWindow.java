@@ -133,7 +133,7 @@ public class OptionsWindow {
       });
     JPanel panelLibraryPath = new JPanel();
     //panelLibraryPath.add(new JLabel("Directory for additional Haskell libraries: "));
-    JLabel intFontPath = new JLabel("Command line options for the Haskell interpreter: ");
+    JLabel intFontPath = new JLabel("Directory for additional Haskell libraries:  ");
     intFontPath.setFont(new Font("Arial", Font.PLAIN, 18));
     panelLibraryPath.add(intFontPath);
     
@@ -166,13 +166,13 @@ public class OptionsWindow {
     panelTest.add(new JSeparator(SwingConstants.HORIZONTAL));
     JPanel testPositive = new JPanel(new GridLayout(0,1));
     //testPositive.add(new JLabel("String that appears in successful test output"));
-    JLabel intFontPositive = new JLabel("(e.g. \\\"quickCheck\\\" for QuickCheck or \\\"\\\" (nothing) for Boolean properties)");
+    JLabel intFontPositive = new JLabel("String that appears in successful test output");
     intFontPositive.setFont(new Font("Arial", Font.PLAIN, 18));
     testPositive.add(intFontPositive);
     
     
     //testPositive.add(new JLabel("(e.g. \"+++ OK, passed\" for QuickCheck or \"True\" for Boolean properties)"));
-    JLabel intFontTestPositive = new JLabel("(e.g. \\\"quickCheck\\\" for QuickCheck or \\\"\\\" (nothing) for Boolean properties)");
+    JLabel intFontTestPositive = new JLabel("(e.g. \\\"+++ OK, passed\\\" for QuickCheck or \\\"True\\\" for Boolean properties)");
     intFontTestPositive.setFont(new Font("Arial", Font.PLAIN, 18));
     testPositive.add(intFontTestPositive);
     
@@ -249,8 +249,8 @@ public class OptionsWindow {
     dialog = new JDialog(wm.getMainScreenFrame(), "Options");
     dialog.setModal(true);
     dialog.getContentPane().add(panelOptions);      //(jTabbedPane1);
-    dialog.setMinimumSize(new Dimension(500,350));
-    dialog.setSize(600, 400);
+    dialog.setMinimumSize(new Dimension(900,500));
+    dialog.setSize(900, 500);
     dialog.setLocationRelativeTo(wm.getMainScreenFrame());
     dialog.setVisible(true);
   }
