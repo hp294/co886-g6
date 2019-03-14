@@ -706,7 +706,8 @@ public class WindowManager {
 
  public void CreateCursor() {
 	Toolkit t1 = Toolkit.getDefaultToolkit();
-	Image img = t1.getImage("X:\\home\\EclipseHeat\\g6\\HEAT_CO886\\src\\icons\\arrow.png");
+	java.net.URL imageURL = Resources.class.getClassLoader().getResource("\\icons\\arrow.png");
+	Image img = t1.getImage(imageURL);
   	Point point = new Point(0,0);
   	Cursor cursor = t1.createCustomCursor(img, point, "Cursor");
   	mainScreenFrame.setCursor(cursor);

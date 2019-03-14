@@ -22,7 +22,7 @@ import managers.WindowManager;
 
 import java.util.logging.Logger;
 
-
+import utils.Resources;
 import utils.Settings;
 import utils.parser.ParsedTest;
 
@@ -711,7 +711,8 @@ public class ConsoleWindow {
  
  public void CreateCursor() {
 	Toolkit t1 = Toolkit.getDefaultToolkit();
-	Image img = t1.getImage("X:\\home\\EclipseHeat\\g6\\HEAT_CO886\\src\\icons\\crosshair.png");
+	java.net.URL imageURL = Resources.class.getClassLoader().getResource("\\icons\\crosshair.png");
+	Image img = t1.getImage(imageURL);
   	Point point = new Point(0,0);
   	Cursor cursor = t1.createCustomCursor(img, point, "Cursor");
   	jtaInterpreterOutput.setCursor(cursor);
