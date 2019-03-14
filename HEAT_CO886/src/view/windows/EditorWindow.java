@@ -256,6 +256,10 @@ public class EditorWindow {
     popMenu.add(jMenuItemCopy);
     popMenu.add(jMenuItemPaste);
     
+    jMenuItemCut.setFont(new Font("Arial",Font.PLAIN,38));
+    jMenuItemCopy.setFont(new Font("Arial",Font.PLAIN,38));
+    jMenuItemPaste.setFont(new Font("Arial",Font.PLAIN,38));
+    
     //sets the popup menu field of the JEditTextArea to the menu just created
     jtaCodeView.setRightClickPopup(popMenu);
     
