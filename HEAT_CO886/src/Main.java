@@ -17,12 +17,20 @@ import managers.FileManager;
 import managers.InterpreterManager;
 import managers.SettingsManager;
 import managers.WindowManager;
+import utils.Resources;
 import managers.UndoManager;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.SimpleFormatter;
+
+import javax.swing.ImageIcon;
+
 import java.util.logging.Level;
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.File;
 
 /**
@@ -54,6 +62,16 @@ public static void main(String[] args) {
     sm.loadSettings();
     WindowManager.setLookAndFeel();
     wm.createGUI();
+   
+   
+    
+    
+    
+
+
+   
+    
+    
 
     if (sm.isNewSettingsFile())
       wm.showWizardWindow();

@@ -16,7 +16,10 @@
 package managers;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Logger;
@@ -338,9 +341,15 @@ public class WindowManager {
 	  mainScreenFrame.setVisible(false);
     mainScreenFrame = new JFrame();
     mainScreenFrame.setTitle("HEAT - Haskell Educational Advancement Tool") ;
+   
     
     Image icon = Resources.getIcon("logo").getImage();
     mainScreenFrame.setIconImage(icon);
+    CreateCursor();
+    
+    
+   
+    
     
     // BorderLayout borderLayout1 = new BorderLayout();
 
@@ -690,12 +699,21 @@ public class WindowManager {
           UndoManager.getInstance().reset();
 }
 
+ public void CreateCursor() {
+	Toolkit t1 = Toolkit.getDefaultToolkit();
+	Image img = t1.getImage("X:\\home\\EclipseHeat\\g6\\HEAT_CO886\\src\\icons\\mouseCursor.png");
+  	Point point = new Point(0,0);
+  	Cursor cursor = t1.createCustomCursor(img, point, "Cursor");
+  	mainScreenFrame.setCursor(cursor);
+}
+  
   /**
    * Sets the look and feel for the program
    */
   public static void setLookAndFeel() {
     try {
          UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+         
     } catch (Exception e) {
       log.warning("[WindowManager] Unable to set look and feel");
     }
