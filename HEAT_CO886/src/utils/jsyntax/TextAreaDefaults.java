@@ -82,7 +82,7 @@ public class TextAreaDefaults {
       DEFAULTS.rows = 15;
       DEFAULTS.styles = SyntaxUtilities.getDefaultSyntaxStyles();
       DEFAULTS.caretColor = Color.black;
-      DEFAULTS.selectionColor = new Color(0xccccff);
+      DEFAULTS.selectionColor = new Color(0x999999);
       DEFAULTS.lineHighlightColor = new Color(255, 253, 216);
       DEFAULTS.lineHighlight = true;
       DEFAULTS.bracketHighlightColor = Color.black;
