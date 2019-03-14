@@ -712,7 +712,7 @@ public class ConsoleWindow {
  }
  
  
- // Custom mouse cursor
+ // Custom mouse custom mouse cursor
  public void CreateCursor() {
 	Toolkit t1 = Toolkit.getDefaultToolkit();
 	java.net.URL imageURL = Resources.class.getClassLoader().getResource("\\icons\\crosshair.png");
