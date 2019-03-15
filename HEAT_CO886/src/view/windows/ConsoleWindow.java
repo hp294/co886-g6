@@ -717,7 +717,7 @@ public class ConsoleWindow {
 	Toolkit t1 = Toolkit.getDefaultToolkit();
 	java.net.URL imageURL = Resources.class.getClassLoader().getResource("\\icons\\crosshair.png");
 	Image img = t1.getImage(imageURL);
-  	Point point = new Point(0,0);
+  	Point point = new Point(20,30);
   	Cursor cursor = t1.createCustomCursor(img, point, "Cursor");
   	jtaInterpreterOutput.setCursor(cursor);
 }
