@@ -99,6 +99,7 @@ public class Toolbar {
     toolBar.add(javax.swing.Box.createHorizontalGlue());
     toolBar.add(statusButton);
     statusButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    //increase status font
     statusButton.setFont(new Font("Arial", Font.PLAIN, 20));
     statusButton.setFocusable(false);
     statusButton.setBorderPainted(false);
