@@ -416,7 +416,7 @@ public class WindowManager {
       /* add splitpane and evaluation window to main frame */
       mainScreenFrame.getContentPane().add(jSplitTree, BorderLayout.CENTER);
       
-      mainScreenFrame.setMinimumSize(new Dimension(1500,700));
+      mainScreenFrame.setMinimumSize(new Dimension(1000,700));
       mainScreenFrame.setSize(820,600);
       mainScreenFrame.pack();
       // java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
