@@ -314,7 +314,7 @@ public class EditorWindow {
   
   public void CreateCursor() {
 		Toolkit t1 = Toolkit.getDefaultToolkit();
-		java.net.URL imageURL = Resources.class.getClassLoader().getResource("\\icons\\crosshair.png");
+		java.net.URL imageURL = Resources.class.getClassLoader().getResource("icons/crossHair.png");
 		Image img = t1.getImage(imageURL);
 	  	Point point = new Point(20,30);
 	  	Cursor cursor = t1.createCustomCursor(img, point, "Cursor");

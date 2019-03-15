@@ -37,6 +37,7 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.InputStream;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -348,10 +349,10 @@ public class ConsoleWindow {
                               errorCount+=1;
                           } else if (!im.checkForErrorContinuation(line)) {
                               error = false;
-                              playSound("audio\\success_2.wav");
+                              playSound("audio/success_2.wav");
                           }
                           if (error) {
-                        	  playSound("audio\\failure_3.wav");
+                        	  playSound("audio/failure_3.wav");
                         	  fixed(false);
                         	 
 				  jtaIODoc.remove(currentLineStart,jtaIODoc.getLength()-currentLineStart);
@@ -640,6 +641,7 @@ public class ConsoleWindow {
 // Takes one parameter String the name of the file.
  public void playSound(String sound) {
 	 java.net.URL playSound = ClassLoader.getSystemResource(sound);
+	
 	  try {
 	        Clip clip = AudioSystem.getClip();
 	        clip.open(AudioSystem.getAudioInputStream(playSound));
@@ -715,7 +717,7 @@ public class ConsoleWindow {
  // Custom mouse custom mouse cursor
  public void CreateCursor() {
 	Toolkit t1 = Toolkit.getDefaultToolkit();
-	java.net.URL imageURL = Resources.class.getClassLoader().getResource("\\icons\\crosshair.png");
+	java.net.URL imageURL = Resources.class.getClassLoader().getResource("icons/crossHair.png");
 	Image img = t1.getImage(imageURL);
   	Point point = new Point(20,30);
   	Cursor cursor = t1.createCustomCursor(img, point, "Cursor");
