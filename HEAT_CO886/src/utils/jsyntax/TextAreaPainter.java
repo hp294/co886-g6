@@ -60,7 +60,7 @@ public class TextAreaPainter extends JComponent implements TabExpander {
     lineNumbers = defaults.lineNumbers;
 
     if (lineNumbers) {
-      leftBorder = fm.charWidth('0') * 7; // The width of the line numbers
+      leftBorder = fm.charWidth('0') * 10; // The width of the line numbers
                                           // column
     } else {
       leftBorder = 0;
