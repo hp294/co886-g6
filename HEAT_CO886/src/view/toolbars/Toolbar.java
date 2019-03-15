@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JToolBar;
 
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import utils.Resources;
@@ -98,6 +99,7 @@ public class Toolbar {
     toolBar.add(javax.swing.Box.createHorizontalGlue());
     toolBar.add(statusButton);
     statusButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    statusButton.setFont(new Font("Arial", Font.PLAIN, 20));
     statusButton.setFocusable(false);
     statusButton.setBorderPainted(false);
     statusButton.setContentAreaFilled(false);
