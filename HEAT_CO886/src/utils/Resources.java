@@ -36,6 +36,7 @@ public class Resources {
       return null;
     String imgLocation = "icons/" + iconName + ".png";
     java.net.URL imageURL = Resources.class.getClassLoader().getResource(imgLocation);
+    //increase icon size
     ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageURL).getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
 	if (imageURL == null) {
       log.warning("[Resources] - Resource not found:" + imgLocation);
